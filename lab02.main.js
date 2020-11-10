@@ -61,12 +61,12 @@ function get(serviceNowTable, callback) {
   // Some properties are passed into function get() through parameters.
   const requestOptions = {
     method: 'GET',
-    auth: {
-      user: options.username,
-      pass: options.password,
-    },
-    baseUrl: options.url,
-    uri: `/api/now/table/${serviceNowTable}?sysparm_limit=1`,
+        auth: {
+        user: options.username,
+        pass: options.password,
+        },
+        baseUrl: options.url,
+        uri: `/api/now/table/${serviceNowTable}?sysparm_limit=1`,
   };
 
   // Send Request to ServiceNow.
