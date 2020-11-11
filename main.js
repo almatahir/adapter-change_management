@@ -136,7 +136,7 @@ class ServiceNowAdapter extends EventEmitter {
     this.emit(status, { id: this.id });
   }
 
-/**
+  /**
    * @memberof ServiceNowAdapter
    * @method getRecord
    * @summary Get ServiceNow Record
@@ -152,10 +152,9 @@ class ServiceNowAdapter extends EventEmitter {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-	this.connector.get((data, error) => {
+     this.connector.get(callback => {
         console.log("In getRecord ");
     });
-	
   }
 
   /**
@@ -174,10 +173,9 @@ class ServiceNowAdapter extends EventEmitter {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-	this.connector.post(this.props, (data, error) => {
+     this.connector.post(this.props, callback => {
         console.log("In postRecord ");
     });
-	 
   }
 }
 
