@@ -117,6 +117,7 @@ healthcheck(callback) {
       this.emitOffline();
      // console.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
       log.error("Error Returned: for id: " + this.id);
+      log.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
       
       
    } else {
@@ -133,6 +134,7 @@ healthcheck(callback) {
       this.emitOnline();
     //   console.log(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
        log.debug("Success Returned for id: " + this.id);
+       log.debug(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
        
    }
    callback(result, error);
