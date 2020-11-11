@@ -152,8 +152,8 @@ class ServiceNowAdapter extends EventEmitter {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-	 this.connector = new ServiceNowConnector({
-      get(callback);
+	this.connector.get((data, error) => {
+        console.log("In getRecord ");
     });
 	
   }
@@ -174,9 +174,8 @@ class ServiceNowAdapter extends EventEmitter {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-	  this.connector = new ServiceNowConnector({
-     
-      post({ serviceNowTable: change_request }, callback);
+	this.connector.post(this.props, (data, error) => {
+        console.log("In postRecord ");
     });
 	 
   }
