@@ -130,8 +130,8 @@ healthcheck(callback) {
       * responseData parameter.
       */
       this.emitOnline();
-       console.log(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
-       log.debug("Error Returned: " + JSON.stringify(result) + " for id: " + this.id);
+    //   console.log(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
+       log.debug("Success Returned for id: " + this.id);
        
    }
    callback(result, error);
