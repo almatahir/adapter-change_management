@@ -115,8 +115,8 @@ healthcheck(callback) {
       * for the callback's errorMessage parameter.
       */
       this.emitOffline();
-      console.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
-      log.error("Error Returned: " + JSON.stringify(error) + " for id: " + this.id);
+     // console.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
+      log.error("Error Returned: for id: " + this.id);
       
    } else {
      /**
