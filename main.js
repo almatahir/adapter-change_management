@@ -216,10 +216,12 @@ healthcheck(callback) {
                         finalResult[i].work_end = parsedBody.result[i].work_end;
                         finalResult[i].change_ticket_key = parsedBody.result[i].sys_id;
                     }
+                    console.log(`\nResponse returned from GET request inside get api:\n${JSON.stringify(finalResult)}`);
+                    return callback(finalResult,error);
+                } else {
+                    return callback(data,error);
                 }
             }
-            console.log(`\nResponse returned from GET request inside get api:\n${JSON.stringify(finalResult)}`);
-            return callback(finalResult,error);
         }});
   }
 
@@ -247,7 +249,8 @@ healthcheck(callback) {
             if (data !== null && typeof data === 'object') {
                 if (JSON.stringify(data).includes("body")) {
                     var parsedBody = JSON.parse(data.body);
-                    finalResult = {
+                     console.log(`\nResponse returned from POST request inside POST api:\n${JSON.stringify(parsedBody)}`);
+                    let finalResult = {
                         change_ticket_number : parsedBody.result.number,
                         active : parsedBody.result.active,
                         priority : parsedBody.result.priority,
@@ -256,9 +259,11 @@ healthcheck(callback) {
                         work_end : parsedBody.result.work_end,
                         change_ticket_key : parsedBody.result.sys_id,
                     };
+                    console.log(`\nResponse returned from POST request inside post api:\n${JSON.stringify(finalResult)}`);
+                    return callback(finalResult,error);
+                } else {
+                    return callback(data,error);
                 }
-            console.log(`\nResponse returned from POST request inside post api:\n${JSON.stringify(finalResult)}`);
-            return callback(finalResult,error);
             }
         }
         });
