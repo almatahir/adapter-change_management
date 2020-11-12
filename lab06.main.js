@@ -117,7 +117,7 @@ healthcheck(callback) {
       this.emitOffline();
      // console.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
       log.error("Error Returned: for id: " + this.id);
-      log.error(`\nError returned from GET Record inside healthCheck:\n${JSON.stringify(error)}`);
+      log.error(`\nError returned from GET Record:\n${JSON.stringify(error)}`);
       
       
    } else {
@@ -134,10 +134,10 @@ healthcheck(callback) {
       this.emitOnline();
     //   console.log(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
        log.debug("Success Returned for id: " + this.id);
-       log.debug(`\nResponse returned from GET request inside healthCheck:\n${JSON.stringify(result)}`);
+       log.debug(`\nResponse returned from GET request:\n${JSON.stringify(result)}`);
        
    }
-   //return callback(result, error);
+   callback(result, error);
  });
 }
 
@@ -195,32 +195,14 @@ healthcheck(callback) {
      * get() takes a callback function.
      */
      this.connector.get((data, error) => {
+ 
         if (error) {
-             console.error(`\nError returned from GET request inside get api:\n${JSON.stringify(error)}`);
-             return callback(data,error);
+        console.error(`\nError returned from GET request:\n${JSON.stringify(error)}`);
         } else {
-            if (data !== null && typeof data === 'object') {
-                console.log(`\nResponse returned from GET request inside get api DATA inside first IF:\n${JSON.stringify(data)}`);
-                if (JSON.stringify(data).includes("body")) {
-                    var parsedBody = JSON.parse(data.body);
-                    console.log(`\nResponse returned from GET request inside get api parsedBody:\n${JSON.stringify(parsedBody)}`);
-                    var finalResult = [];
-                    for (let i = 0; i < parsedBody.result.length; i++) { 
-                        console.log(`\nResponse returned from GET request inside get api inside for:\n${JSON.stringify(parsedBody.result)}`);
-                        finalResult[i] = {};              // creates a new object
-                        finalResult[i].change_ticket_number = parsedBody.result[i].number;
-                        finalResult[i].active = parsedBody.result[i].active;
-                        finalResult[i].priority = parsedBody.result[i].priority;
-                        finalResult[i].description = parsedBody.result[i].description;
-                        finalResult[i].work_start = parsedBody.result[i].work_start;
-                        finalResult[i].work_end = parsedBody.result[i].work_end;
-                        finalResult[i].change_ticket_key = parsedBody.result[i].sys_id;
-                    }
-                }
-            }
-            console.log(`\nResponse returned from GET request inside get api:\n${JSON.stringify(finalResult)}`);
-            return callback(finalResult,error);
-        }});
+        console.log(`\nResponse returned from GET request:\n${JSON.stringify(data)}`);
+        }
+        return callback(data,error);
+        });
   }
 
   /**
@@ -240,27 +222,13 @@ healthcheck(callback) {
      * post() takes a callback function.
      */
       this.connector.post(this.props, (data, error) => {
+ 
         if (error) {
-            console.error(`\nError returned from POST request inside post api:\n${JSON.stringify(error)}`);
-            return callback(data,error);
+        console.error(`\nError returned from POST request:\n${JSON.stringify(error)}`);
         } else {
-            if (data !== null && typeof data === 'object') {
-                if (JSON.stringify(data).includes("body")) {
-                    var parsedBody = JSON.parse(data.body);
-                    finalResult = {
-                        change_ticket_number : parsedBody.result.number,
-                        active : parsedBody.result.active,
-                        priority : parsedBody.result.priority,
-                        description : parsedBody.result.description,
-                        work_start : parsedBody.result.work_start,
-                        work_end : parsedBody.result.work_end,
-                        change_ticket_key : parsedBody.result.sys_id,
-                    };
-                }
-            console.log(`\nResponse returned from POST request inside post api:\n${JSON.stringify(finalResult)}`);
-            return callback(finalResult,error);
-            }
+        console.log(`\nResponse returned from POST request:\n${JSON.stringify(data)}`);
         }
+        return callback(data,error);
         });
   
   }
